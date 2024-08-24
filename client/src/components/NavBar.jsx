@@ -7,7 +7,7 @@ import {useUser} from 'src/utils/useUser';
 import {LogOutButton} from 'src/users/Logout';
 import {BreadCrumbComponent} from './Breadcrumb';
 import {SmallContainer} from './Container';
-import logo from "src/assets/react.svg";
+import logo from "src/assets/logo.jpg";
 
 export const NavBar = () => {
     const user = useUser();
@@ -17,8 +17,8 @@ export const NavBar = () => {
         <div>
             <Navbar color="dark" className="text-white" dark>
                 <NavLink to="/" className="me-auto navbar-brand">
-                    <img width="40px" src={logo} className="mx-2"/>
-                    Municipalidad la Esperana
+                    <img width="40px" src={logo} className="mx-2 rounded-3"/>
+                    Municipalidad la Esperanza
                 </NavLink>
                 <div className="px-4">
                     <span>{user ? `${user.username} - ${user.first_name} ${user.last_name} ` : ''}</span>
