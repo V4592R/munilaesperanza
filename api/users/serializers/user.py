@@ -52,7 +52,7 @@ class ChangeUserPasswordSerializer(serializers.Serializer):
         user = self.context['user']
         if user.is_staff:
             raise serializers.ValidationError(
-                'You cannot change superuser password')
+                'No se puede cambiar la contraseña del admin')
         return data
 
     def create(self, validated_data):
@@ -100,6 +100,7 @@ class UserModelSerializer(serializers.ModelSerializer):
             'birthday',
             'phone_number',
             'is_staff',
+            'active',
         ]
 
         read_only_fields = [

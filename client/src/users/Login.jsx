@@ -65,7 +65,7 @@ export const Login = () => {
                                     ) : null}
                                     <div className="d-flex align-items-center justify-content-center">
                                         <Button
-                                            color="dark"
+                                            color="primary"
                                             type="submit"
                                             disabled={submitting}
                                             block

@@ -15,10 +15,10 @@ export const NavBar = () => {
 
     return (
         <div>
-            <Navbar color="dark" className="text-white" dark>
+            <Navbar color="primary" className="text-white">
                 <NavLink to="/" className="me-auto navbar-brand">
-                    <img width="40px" src={logo} className="mx-2 rounded-3"/>
-                    Municipalidad la Esperanza
+                    <img width="40px" src={logo} alt='logo' className="mx-2 rounded-3 text-primary"/>
+                    <span className='text-white'>Municipalidad de la Esperanza</span>
                 </NavLink>
                 <div className="px-4">
                     <span>{user ? `${user.username} - ${user.first_name} ${user.last_name} ` : ''}</span>

@@ -88,7 +88,7 @@ export const ListComponent = ({ children, title = "", showActions = true, fields
       <div className="mt-5">
         <h3 className="mokoto-font">{title}</h3>
         {children}
-        <Link to={urlCreate} className="btn btn-dark my-3">
+        <Link to={urlCreate} className="btn btn-primary my-3" >
           <i className="bi bi-plus-circle-fill" />
         </Link>
         <PaginatedTable data={data} fields={fields} actions={showActions} onDelete={deleteItem ? handleDelete : null} onEdit={handleEdit} fetchData={fetchData} currentPage={page} />

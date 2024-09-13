@@ -26,12 +26,12 @@ const PaginatedTable = ({ data, currentPage, pageSize = 10, fetchData = () => { 
                 <td style={{ width: "20%" }}>
                   <div className="d-flex align-items-centers justify-content-center">
                     {onEdit ? (
-                      <Button size="sm" color="dark" className="me-2" onClick={() => onEdit(item.id)}>
+                      <Button size="sm" color="primary" className="me-2" onClick={() => onEdit(item.id)}>
                         <i className="bi bi-pencil-square" />
                       </Button>)
                       : null
                     }
-                    {onDelete ? (
+                    {onDelete && !item['hideDelete'] ? (
                       <Button size="sm" color="danger" className="me-2" onClick={() => onDelete(item.id)}>
                         <i className="bi bi-trash3-fill" />
                       </Button>)

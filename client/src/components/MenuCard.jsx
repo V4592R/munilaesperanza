@@ -8,7 +8,7 @@ export const MenuCard = ({className, label = "", iconClass = "", to = "/"}) => {
     return (
         <Card
             className={classNames("menu-card", {[className]: !!className})}
-            color="dark"
+            color="primary"
             inverse
             onClick={() => navigate(to)}
             role="button"

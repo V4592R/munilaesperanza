@@ -77,5 +77,13 @@ class UserViewSet(
         return Response({"username": user.username, "password": serializer.context['raw_password']},
                         status=status.HTTP_201_CREATED)
 
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        if instance.is_staff:
+            return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
     def perform_destroy(self, instance):
         instance.active = False
+        instance.save()
