@@ -1,4 +1,4 @@
-import {useMemo} from "react";
+import {useMemo, Fragment} from "react";
 import {NavLink} from "react-router-dom";
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 import PropTypes from "prop-types";
@@ -14,7 +14,7 @@ export const BreadCrumbComponent = ({location}) => {
         <Breadcrumb>
             <BreadcrumbItem>
                 <NavLink
-                    to="/"
+                    to="/admin"
                     end
                 >
                     Home
@@ -30,6 +30,10 @@ export const BreadCrumbComponent = ({location}) => {
                     .split("-")
                     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
                     .join(" ");
+
+                if(label === "Admin") {
+                    return <Fragment key={urlPath}></Fragment>;
+                }
 
                 return (
                     <BreadcrumbItem key={urlPath}>

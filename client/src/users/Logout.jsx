@@ -7,7 +7,7 @@ export const LogOutButton = () => {
     const dispatch = useDispatch();
     const onClick = () => {
         dispatch(logOut());
-        navigate('/login');
+        navigate('login');
     };
     return (
         <button onClick={onClick} className="nav-item btn bi bi-power text-white"/>

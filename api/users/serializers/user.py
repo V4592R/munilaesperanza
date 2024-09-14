@@ -96,6 +96,8 @@ class UserModelSerializer(serializers.ModelSerializer):
             'id',
             'first_name',
             'last_name',
+            'second_surname',
+            'middle_name',
             'username',
             'birthday',
             'phone_number',

@@ -16,7 +16,7 @@ export const NavBar = () => {
     return (
         <div>
             <Navbar color="primary" className="text-white">
-                <NavLink to="/" className="me-auto navbar-brand">
+                <NavLink to="/admin" className="me-auto navbar-brand">
                     <img width="40px" src={logo} alt='logo' className="mx-2 rounded-3 text-primary"/>
                     <span className='text-white'>Municipalidad de la Esperanza</span>
                 </NavLink>

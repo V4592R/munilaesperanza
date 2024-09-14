@@ -18,3 +18,21 @@ SmallContainer.propTypes = {
     className: PropTypes.string,
     loading: PropTypes.bool,
 }
+
+export const FluidContainer = ({children, className, loading = false}) => {
+    return (
+        loading ? <Spinner/> :
+            (
+                <div className={`container-fluid ${className ? className : ''}`}>
+                    {children}
+                </div>
+            )
+
+    )
+};
+
+FluidContainer.propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    loading: PropTypes.bool,
+}

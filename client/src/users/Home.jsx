@@ -10,16 +10,19 @@ export const Home = () => {
         {
             label: "Usuarios",
             iconClass: "bi-people-fill",
-            to: "/usuarios",
+            to: "usuarios",
+            forStaff: true,
         },
     ]
 
     return (
         <SmallContainer>
             <div className="d-flex flex-column align-items-center justify-content-center">
+                <h1>Bienvenido</h1>
+                <p>Dashboard</p>
                 {
-                    items.map(({allow, label, iconClass, to}) => (
-                        <ComponentCheckRole allow={allow} user={user} key={label}>
+                    items.map(({forStaff, label, iconClass, to}) => (
+                        <ComponentCheckRole  user={user} key={label} forStaff={forStaff ?? false}>
                             <MenuCard className="col-12 col-md-5 col-lg-4 my-3" label={label} iconClass={iconClass}
                                       to={to}/>
                         </ComponentCheckRole>

@@ -11,6 +11,6 @@ export const ListUsers = () => {
         {label: 'Apellido', key: 'last_name'},
         {label: 'Número de teléfono', key: 'phone_number'},
     ];
-    return <ListComponent title="Usuarios" fields={fields} urlEdit="/usuarios/:id" urlCreate="/usuarios/nuevo"
+    return <ListComponent title="Usuarios" fields={fields} urlEdit=":id" urlCreate="nuevo"
                           getData={getUsers} deleteItem={deleteUser} transformResults={transformResults}/>
 }

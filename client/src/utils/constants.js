@@ -1,18 +1,17 @@
 import PropTypes from "prop-types";
 
-export const checkRoles = (allow = [], user) => {
+export const checkRoles = (forStaff = false, user) => {
     if (!user) return false;
-    if (!allow.length) return true;
-    return allow.some((role) => role === user.user_type);
+    return !forStaff || user['is_staff'];
 };
 
-export const ComponentCheckRole = ({allow = [], user, children}) => {
-    if (!checkRoles(allow, user)) return null;
+export const ComponentCheckRole = ({forStaff = false, user, children}) => {
+    if (!checkRoles(forStaff, user)) return null;
     return children;
 };
 
 ComponentCheckRole.propTypes = {
-    allow: PropTypes.array,
+    forStaff: PropTypes.bool,
     user: PropTypes.object,
     children: PropTypes.node,
 }

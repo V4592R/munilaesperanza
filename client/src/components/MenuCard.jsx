@@ -3,7 +3,7 @@ import classNames from "classnames"
 import {useNavigate} from "react-router"
 import PropTypes from "prop-types";
 
-export const MenuCard = ({className, label = "", iconClass = "", to = "/"}) => {
+export const MenuCard = ({className, label = "", iconClass = "", to = "/admin"}) => {
     const navigate = useNavigate();
     return (
         <Card

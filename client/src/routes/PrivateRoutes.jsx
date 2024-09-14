@@ -5,19 +5,19 @@ import { checkRoles } from 'src/utils/constants';
 import PropTypes from "prop-types";
 
 
-const PrivateRoutes = ({ allow = [] }) => {
+const PrivateRoutes = () => {
     const user = useUser();
 
-    if (!user || !user.token) return <Navigate to="/login" />
+    if (!user || !user.token) return <Navigate to="login" />
 
     return (
-        checkRoles(allow, user) ? (
+        checkRoles(false, user) ? (
             <>
                 <NavBar />
                 <Outlet />
             </>
 
-        ) : <Navigate to="/" />
+        ) : <Navigate to="" />
     )
 }
 

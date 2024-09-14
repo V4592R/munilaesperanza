@@ -62,7 +62,7 @@ export const FormUsers = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
-                navigate('/usuarios');
+                navigate('/admin/usuarios');
             } catch (error) {
                 handleError(error, 'Oops...');
             }
@@ -75,7 +75,7 @@ export const FormUsers = () => {
                     text: `${response.username} - ${response.password}`,
                     showConfirmButton: true,
                 })
-                navigate('/usuarios');
+                navigate('/admin/usuarios');
             } catch (error) {
                 handleError(error, 'Oops...');
             }
@@ -114,18 +114,17 @@ export const FormUsers = () => {
         <SmallContainer className="mt-5 d-flex flex-column align-items-center justify-content-center" loading={loading}>
             <h3>{`${id ? "Editar" : "Crear"} usuario`} </h3>
 
-            <AppButtonDanger onClick={resetUserPassword}>
+            {id && initialValues['is_staff'] !== true ? (<AppButtonDanger onClick={resetUserPassword}>
                 Resetear contraseña
-            </AppButtonDanger>
-
+            </AppButtonDanger>) : <></>}
             <Form
                 initialValues={initialValues}
                 validate={validateForm}
                 onSubmit={onSubmit}
                 render={({handleSubmit, submitting}) => (
                     <div
-                        className="d-flex flex-column justify-content-center align-items-center pb-4 col-12 col-md-10 mx-auto mt-2">
-                        <form onSubmit={handleSubmit} className="w-50">
+                        className="d-flex flex-column justify-content-center align-items-center pb-4 col-12 col-md-8 col-lg-6 mx-auto mt-2">
+                        <form onSubmit={handleSubmit} className="w-100">
                             <div className="row mb-3">
                                 <div className="col-12">
                                     <Field
