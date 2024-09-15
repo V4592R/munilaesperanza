@@ -19,6 +19,7 @@ from django.urls import path, include
 
 api_urls = [
     path('', include('users.urls')),
+    path('', include('muni.urls')),
 ]
 
 urlpatterns = [
