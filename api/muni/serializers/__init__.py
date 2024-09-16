@@ -1,2 +1,2 @@
-from category import CategoryModelSerializer
-from publication import PublicationModelSerializer, PublicationCreateModelSerializer
+from .category import CategoryModelSerializer
+from .publication import PublicationModelSerializer, PublicationCreateModelSerializer

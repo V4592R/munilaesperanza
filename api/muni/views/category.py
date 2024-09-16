@@ -14,7 +14,7 @@ from muni.serializers import CategoryModelSerializer
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all(active=True)
+    queryset = Category.objects.filter(active=True)
     serializer_class = CategoryModelSerializer
 
     def get_permissions(self):

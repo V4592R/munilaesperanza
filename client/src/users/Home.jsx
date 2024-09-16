@@ -13,6 +13,12 @@ export const Home = () => {
             to: "usuarios",
             forStaff: true,
         },
+        {
+            label: "Publicaciones",
+            iconClass: "bi-postcard",
+            to: "publicaciones",
+            forStaff: false,
+        },
     ]
 
     return (

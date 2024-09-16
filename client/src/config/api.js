@@ -2,6 +2,7 @@ import Axios from 'axios';
 
 const DOMAIN = 'http://localhost:8000/api/v1';
 const USERS = 'users';
+const PUBLICATIONS = 'publications';
 const signUpUrl = `${USERS}/signup`;
 export const LOGIN = `${USERS}/login`;
 const RESET_PASSWORD = `reset_password`;
@@ -113,4 +114,21 @@ export const getUser = async ({id, token}) => {
 
 export const deleteUser = async ({id, token}) => {
     return await deleteGeneric({id, token, path: USERS});
+};
+
+export const getPublications = async ({token, page = 1}) => {
+    return await getAllGeneric({token, path: PUBLICATIONS, page});
+};
+
+export const createPublication = async ({data, token}) => {
+    return await postGeneric({data, token, path: PUBLICATIONS});
+};
+
+export const updatePublication = async ({id, token, data}) => {
+    return await updateGeneric({id, token, data, path: PUBLICATIONS});
+};
+
+
+export const deletePublication = async ({id, token}) => {
+    return await deleteGeneric({id, token, path: PUBLICATIONS});
 };

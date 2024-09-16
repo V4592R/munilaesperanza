@@ -14,7 +14,7 @@ from muni.serializers import PublicationModelSerializer, PublicationCreateModelS
 
 
 class PublicationViewSet(viewsets.ModelViewSet):
-    queryset = Publication.objects.all(active=True)
+    queryset = Publication.objects.filter(active=True)
 
     def get_serializer_class(self):
         if self.action == 'create':
