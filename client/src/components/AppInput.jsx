@@ -4,6 +4,7 @@ import { NumericFormat } from "react-number-format";
 import Select from "react-select";
 import AsyncCreatableSelect from 'react-select/async-creatable';
 
+
 export const InputField = ({
   input,
   meta: { touched, error },
@@ -207,3 +208,43 @@ export const InputAsyncCreatable = (
     </div>
   )
 };
+
+// export const InputRichTextField = (
+//     {
+//          input,
+//          placeholder,
+//          meta: { touched, error },
+//          readOnly = false,
+//          labelClassNames = "",
+//          label,
+//     }) => {
+//     const invalid = touched && error;
+//     const contentHTML = convertFromHTML(input.value);
+//     const state = ContentState.createFromBlockArray(
+//         contentHTML.contentBlocks,
+//         contentHTML.entityMap,
+//     );
+//     const content = JSON.stringify(convertToRaw(state));
+//
+//     return (
+//         <div className="form-group">
+//             <label
+//                 className={classNames("form-label", {
+//                     [labelClassNames]: labelClassNames,
+//                 })}
+//             >
+//                 {label}
+//             </label>
+//             <MUIRichTextEditor
+//                 defaultValue={content}
+//                 label={placeholder}
+//                 className={classNames("form-control", { "is-invalid": invalid })}
+//                 readOnly={readOnly}
+//                 inlineToolbar={true}
+//                 inlineToolbarControls={["bold", "italic", "underline", "strikethrough", "highlight", "link", "clear"]}
+//                 // onChange={value => input.onChange(stateToHTML(value.getCurrentContent()))}
+//             />
+//             {invalid && <div className="invalid-feedback">{error}</div>}
+//         </div>
+//     );
+// };
