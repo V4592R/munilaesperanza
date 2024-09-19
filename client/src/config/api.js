@@ -116,6 +116,10 @@ export const deleteUser = async ({id, token}) => {
     return await deleteGeneric({id, token, path: USERS});
 };
 
+export const getPublication = async ({id, token}) => {
+    return await getGeneric({id, token, path: PUBLICATIONS});
+};
+
 export const getPublications = async ({token, page = 1}) => {
     return await getAllGeneric({token, path: PUBLICATIONS, page});
 };

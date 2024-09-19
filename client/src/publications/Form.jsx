@@ -1,23 +1,21 @@
 import {FormComponent} from "src/components/form/FormComponent.jsx";
 import {validate, validators} from "validate-redux-form";
-import {createPublication, getPublications, updatePublication} from "src/config/api.js";
+import {createPublication, getPublication, updatePublication} from "src/config/api.js";
 import {Field, Form} from "react-final-form";
 import {Button} from "reactstrap";
-import {InputField} from "src/components/AppInput.jsx";
+import {InputField, InputRichTextField} from "src/components/AppInput.jsx";
 
 const validateForm = (values) => validate(values, {
     title: validators.exists()("Campo requerido"),
     publication_date: validators.exists()("Campo requerido"),
-    phone_number: validators.exists()("Campo requerido"),
-    birthday: validators.exists()("Campo requerido"),
     content: validators.exists()("Campo requerido"),
 });
 
 export const PublicationForm = () => {
     return (
         <FormComponent
-            parentPath={'/admin/publications'}
-            getData={getPublications}
+            parentPath={'/admin/publicaciones'}
+            getData={getPublication}
             createItem={createPublication}
             updateItem={updatePublication}
             pageName='publicaciones'
@@ -60,14 +58,14 @@ export const PublicationForm = () => {
                                     </div>
                                 </div>
                                 <div className="row mb-3">
-                                    {/*<div className="col-12">*/}
-                                    {/*    <Field*/}
-                                    {/*        name="content"*/}
-                                    {/*        render={InputRichTextField}*/}
-                                    {/*        label="Contenido"*/}
-                                    {/*        placeholder='Comienza a escribir...'*/}
-                                    {/*    />*/}
-                                    {/*</div>*/}
+                                    <div className="col-12">
+                                        <Field
+                                            name="content"
+                                            render={InputRichTextField}
+                                            label="Contenido"
+                                            placeholder='Comienza a escribir...'
+                                        />
+                                    </div>
                                 </div>
                                 <div className="d-flex align-items-center justify-content-center">
                                     <Button

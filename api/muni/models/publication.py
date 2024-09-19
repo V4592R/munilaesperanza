@@ -11,4 +11,4 @@ class Publication(BaseModel):
     publication_date = models.DateField()
     expiration_date = models.DateField(null=True, default=None)
     user = models.ForeignKey('users.User', related_name='publications', on_delete=models.SET_NULL, null=True)
-    categories = models.ManyToManyField('muni.Category', related_name='publications')
+    categories = models.ManyToManyField('muni.Category', related_name='publications', blank=True)   

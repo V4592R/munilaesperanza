@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import {Form} from 'react-final-form';
 import {useParams, useNavigate} from 'react-router-dom';
 import Swal from 'sweetalert2';
 import {SmallContainer} from 'src/components/Container';
@@ -21,6 +20,7 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
                 try {
                     setLoading(true);
                     const data = await getData({id, token: user.token});
+                    console.log(data);
                     setInitialValues(data);
                 } catch (error) {
                     await Swal.fire({
@@ -51,6 +51,7 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
                 navigate(parentPath);
             } catch (error) {
                 handleError(error, 'Oops...');
+                setInitialValues(data);
             }
         } else {
             try {
@@ -63,6 +64,7 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
                 navigate(parentPath);
             } catch (error) {
                 handleError(error, 'Oops...');
+                setInitialValues(data);
             }
         }
         setLoading(false);

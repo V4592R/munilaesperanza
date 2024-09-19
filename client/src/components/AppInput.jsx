@@ -3,6 +3,8 @@ import classNames from "classnames";
 import { NumericFormat } from "react-number-format";
 import Select from "react-select";
 import AsyncCreatableSelect from 'react-select/async-creatable';
+import JoditEditor from 'jodit-react';
+import {useMemo, useRef} from "react";
 
 
 export const InputField = ({
@@ -209,42 +211,47 @@ export const InputAsyncCreatable = (
   )
 };
 
-// export const InputRichTextField = (
-//     {
-//          input,
-//          placeholder,
-//          meta: { touched, error },
-//          readOnly = false,
-//          labelClassNames = "",
-//          label,
-//     }) => {
-//     const invalid = touched && error;
-//     const contentHTML = convertFromHTML(input.value);
-//     const state = ContentState.createFromBlockArray(
-//         contentHTML.contentBlocks,
-//         contentHTML.entityMap,
-//     );
-//     const content = JSON.stringify(convertToRaw(state));
-//
-//     return (
-//         <div className="form-group">
-//             <label
-//                 className={classNames("form-label", {
-//                     [labelClassNames]: labelClassNames,
-//                 })}
-//             >
-//                 {label}
-//             </label>
-//             <MUIRichTextEditor
-//                 defaultValue={content}
-//                 label={placeholder}
-//                 className={classNames("form-control", { "is-invalid": invalid })}
-//                 readOnly={readOnly}
-//                 inlineToolbar={true}
-//                 inlineToolbarControls={["bold", "italic", "underline", "strikethrough", "highlight", "link", "clear"]}
-//                 // onChange={value => input.onChange(stateToHTML(value.getCurrentContent()))}
-//             />
-//             {invalid && <div className="invalid-feedback">{error}</div>}
-//         </div>
-//     );
-// };
+export const InputRichTextField = (
+    {
+         input,
+         placeholder,
+         meta: { touched, error },
+         readOnly = false,
+         labelClassNames = "",
+         label,
+    }) => {
+    const invalid = touched && error;
+    const editor = useRef(null);
+
+    const config = useMemo(() =>
+        ({
+            readonly: readOnly, // all options from https://xdsoft.net/jodit/docs/,
+            placeholder: placeholder || 'Start typings...',
+            language: 'es',
+            height: 400,
+            removeButtons: ['speechRecognize', 'spellcheck'],
+        }),
+        [placeholder, readOnly]
+    );
+
+    return (
+        <div className="form-group">
+            <label
+                className={classNames("form-label", {
+                    [labelClassNames]: labelClassNames,
+                })}
+            >
+                {label}
+            </label>
+            <JoditEditor
+                ref={editor}
+                value={input.value}
+                config={config}
+                tabIndex={1} // tabIndex of textarea
+                onBlur={newContent => input.onChange(newContent)} // preferred to use only this option to update the content for performance reasons
+                // onChange={newContent => {}}
+            />
+            {invalid && <div className="invalid-feedback">{error}</div>}
+        </div>
+    );
+};
