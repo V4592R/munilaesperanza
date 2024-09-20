@@ -1,5 +1,5 @@
 import {FormComponent} from "src/components/form/FormComponent.jsx";
-import {validate, validators} from "validate-redux-form";
+import {validate, validators, combine} from "validate-redux-form";
 import {createPublication, getPublication, updatePublication} from "src/config/api.js";
 import {Field, Form} from "react-final-form";
 import {Button} from "reactstrap";
@@ -9,6 +9,10 @@ const validateForm = (values) => validate(values, {
     title: validators.exists()("Campo requerido"),
     publication_date: validators.exists()("Campo requerido"),
     content: validators.exists()("Campo requerido"),
+    description: combine(
+        validators.exists()("Campo requerido"),
+        validators.length({max: 300})('Máximo 300 caracteres'),
+    )
 });
 
 export const PublicationForm = () => {
@@ -36,6 +40,18 @@ export const PublicationForm = () => {
                                             type="text"
                                             placeholder="Ej. Desfile de feria"
                                             label="Título"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-12">
+                                        <Field
+                                            name="description"
+                                            render={InputField}
+                                            counter={true}
+                                            type="text"
+                                            placeholder="Ej. Resumen de la noticia"
+                                            label="Descripción"
                                         />
                                     </div>
                                 </div>
@@ -74,7 +90,7 @@ export const PublicationForm = () => {
                                         disabled={submitting}
                                         block
                                     >
-                                    {id ? "Editar" : "Agregar"}
+                                        {id ? "Editar" : "Agregar"}
                                     </Button>
                                 </div>
                             </form>

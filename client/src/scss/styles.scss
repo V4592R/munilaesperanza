@@ -1,2 +1,6 @@
 $primary: #213543;
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+.post-content img {
+  max-width: 100%;
+}

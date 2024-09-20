@@ -20,7 +20,6 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
                 try {
                     setLoading(true);
                     const data = await getData({id, token: user.token});
-                    console.log(data);
                     setInitialValues(data);
                 } catch (error) {
                     await Swal.fire({

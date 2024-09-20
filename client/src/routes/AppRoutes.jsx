@@ -7,6 +7,8 @@ import {useUser} from "src/utils/useUser";
 
 import {ListUsers, FormUsers} from "src/users";
 import {PublicationForm, PublicationsList} from "src/publications/index.js";
+import {PostsView} from "src/public_posts/public_posts_list.jsx";
+import IndividualPostView from "src/public_posts/post_detail.jsx";
 
 const NoRoleUser = () => {
     return (
@@ -38,7 +40,8 @@ export const AppRoutes = () => {
                     <Route element={<PublicationForm/>} path="publicaciones/:id" exact/>
                 </Route>
             </Route>
-
+            <Route path='/publicaciones' element={<PostsView/>} exact/>
+            <Route path='/publicaciones/:id' element={<IndividualPostView/>} exact/>
         </Routes>
     )
 }

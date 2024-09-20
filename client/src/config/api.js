@@ -124,6 +124,14 @@ export const getPublications = async ({token, page = 1}) => {
     return await getAllGeneric({token, path: PUBLICATIONS, page});
 };
 
+export const getPublicDetailPost = async ({id, token}) => {
+    return await getGeneric({id: `${id}/public_detail`, token, path: PUBLICATIONS});
+};
+
+export const getPublicPosts = async ({token, page = 1}) => {
+    return await getAllGeneric({token, path: `${PUBLICATIONS}/public_posts`, page});
+};
+
 export const createPublication = async ({data, token}) => {
     return await postGeneric({data, token, path: PUBLICATIONS});
 };

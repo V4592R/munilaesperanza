@@ -6,6 +6,9 @@ import { HashRouter } from "react-router-dom";
 import { AppRoutes } from "./routes/AppRoutes";
 
 import "./App.css";
+import moment from "moment";
+import 'moment/dist/locale/es';
+moment.locale("es");
 
 function App() {
     return (

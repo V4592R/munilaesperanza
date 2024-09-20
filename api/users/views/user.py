@@ -85,5 +85,5 @@ class UserViewSet(
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):
-        instance.active = False
+        instance.   active = False
         instance.save()

@@ -15,6 +15,7 @@ export const InputField = ({
   label = "",
   labelClassNames = "",
   readOnly = false,
+  counter = false
 }) => (
   <div className="form-group">
     <label
@@ -23,6 +24,7 @@ export const InputField = ({
       })}
     >
       {label}
+        {counter ? <span className='ms-2 badge bg-primary'>{input.value?.length ?? 0}</span> : null}
     </label>
     <input
       type={type}
