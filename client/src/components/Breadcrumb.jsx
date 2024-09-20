@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 import {Breadcrumb, BreadcrumbItem} from "reactstrap";
 import PropTypes from "prop-types";
 
-export const BreadCrumbComponent = ({location}) => {
+export const BreadCrumbComponent = ({location, defaultHome = '/admin'}) => {
     const pathSegments = useMemo(() => {
         return location.pathname
             .split("/")
@@ -14,7 +14,7 @@ export const BreadCrumbComponent = ({location}) => {
         <Breadcrumb>
             <BreadcrumbItem>
                 <NavLink
-                    to="/admin"
+                    to={defaultHome}
                     end
                 >
                     Home
@@ -31,7 +31,7 @@ export const BreadCrumbComponent = ({location}) => {
                     .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
                     .join(" ");
 
-                if(label === "Admin") {
+                if (label === "Admin") {
                     return <Fragment key={urlPath}></Fragment>;
                 }
 
@@ -52,7 +52,8 @@ export const BreadCrumbComponent = ({location}) => {
 
 BreadCrumbComponent.propTypes = {
     location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired
-    })
+        pathname: PropTypes.string.isRequired,
+    }),
+    defaultHome: PropTypes.string,
 }
 
