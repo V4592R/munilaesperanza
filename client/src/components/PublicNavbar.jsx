@@ -3,7 +3,6 @@ import {
     Collapse,
     Navbar,
     NavbarToggler,
-    NavbarBrand,
     Nav,
     NavItem,
 } from 'reactstrap';
@@ -20,18 +19,20 @@ function PublicNavbar(args) {
 
     return (
         <div>
-            <Navbar {...args} color='primary'>
-                <NavLink to="/" className='me-auto navbar-brand'>
+            <Navbar {...args} color='primary' expand='lg'>
+                <NavLink to="/" className='me-3 navbar-brand'>
                     <div>
                         <img width="40px" src={logo} alt='logo' className="mx-2 rounded-3 text-primary"/>
                         <span className='text-white'>Municipalidad de la Esperanza</span>
                     </div>
                 </NavLink>
-                <NavbarToggler onClick={toggle} className='text-white'/>
+                <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="me-auto" navbar>
-                        <NavItem>
-                            <NavLink to="/publicaciones" className='text-white'>
+                    <Nav navbar>
+                        <NavItem className='text-center text-lg-start'>
+                            <NavLink to="/publicaciones" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
                                 Publicaciones
                             </NavLink>
                         </NavItem>
