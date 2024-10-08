@@ -19,6 +19,12 @@ export const Home = () => {
             to: "publicaciones",
             forStaff: false,
         },
+        {
+            label: "Servicios",
+            iconClass: "bi-gear",
+            to: "servicios",
+            forStaff: false,
+        },
     ]
 
     return (

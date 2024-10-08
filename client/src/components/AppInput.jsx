@@ -37,6 +37,34 @@ export const InputField = ({
   </div>
 );
 
+export const InputTextAreaField = ({input,
+   meta: {touched, error},
+   placeholder = "...",
+   label = "",
+   labelClassNames = "",
+   readOnly = false,
+   rows = 5,
+   counter = false}) => (
+    <div className="form-group">
+        <label
+            className={classNames("form-label", {
+                [labelClassNames]: labelClassNames,
+            })}
+        >
+            {label}
+            {counter ? <span className='ms-2 badge bg-primary'>{input.value?.length ?? 0}</span> : null}
+        </label>
+        <textarea
+            placeholder={placeholder}
+            className={classNames("form-control", {"is-invalid": touched && error})}
+            readOnly={readOnly}
+            {...input}
+            rows={rows}
+        />
+        {error && touched && <span className="invalid-feedback">{error}</span>}
+    </div>
+);
+
 export const InputNumberField = ({
   input,
   decimalScale,

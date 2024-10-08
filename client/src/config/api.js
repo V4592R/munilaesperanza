@@ -1,8 +1,12 @@
 import Axios from 'axios';
+import {store} from "src/store/index.js";
+import {logOut} from "src/store/user.js";
 
 const DOMAIN = 'http://localhost:8000/api/v1';
 const USERS = 'users';
 const PUBLICATIONS = 'publications';
+const SERVICES = 'services';
+const REQUIREMENTS = 'requirements';
 const signUpUrl = `${USERS}/signup`;
 export const LOGIN = `${USERS}/login`;
 const RESET_PASSWORD = `reset_password`;
@@ -10,6 +14,20 @@ const RESET_PASSWORD = `reset_password`;
 export const getEndpoint = (path) => {
     return `${DOMAIN}/${path}/`;
 };
+
+Axios.interceptors.response.use(
+    function(response) {
+        return response;
+    },
+    function(error) {
+        console.log(error);
+        if (error?.response?.status === 401) {
+            store.dispatch(logOut());
+        }
+
+        return Promise.reject(error);
+    }
+);
 
 const getHeaders = (token) => {
     return !token ? {} : {
@@ -140,7 +158,46 @@ export const updatePublication = async ({id, token, data}) => {
     return await updateGeneric({id, token, data, path: PUBLICATIONS});
 };
 
-
 export const deletePublication = async ({id, token}) => {
     return await deleteGeneric({id, token, path: PUBLICATIONS});
+};
+
+export const getService = async ({id, token}) => {
+    return await getGeneric({id, token, path: SERVICES});
+};
+
+export const getServices = async ({token, page = 1}) => {
+    return await getAllGeneric({token, path: SERVICES, page});
+};
+
+export const createService = async ({data, token}) => {
+    return await postGeneric({data, token, path: SERVICES});
+};
+
+export const updateService = async ({id, token, data}) => {
+    return await updateGeneric({id, token, data, path: SERVICES});
+};
+
+export const deleteService = async ({id, token}) => {
+    return await deleteGeneric({id, token, path: SERVICES});
+};
+
+export const getRequirement = async ({id, token}) => {
+    return await getGeneric({id, token, path: REQUIREMENTS});
+};
+
+export const getRequirements = async ({token, page = 1}) => {
+    return await getAllGeneric({token, path: REQUIREMENTS, page});
+};
+
+export const createRequirement = async ({data, token}) => {
+    return await postGeneric({data, token, path: REQUIREMENTS});
+};
+
+export const updateRequirement = async ({id, token, data}) => {
+    return await updateGeneric({id, token, data, path: REQUIREMENTS});
+};
+
+export const deleteRequirement = async ({id, token}) => {
+    return await deleteGeneric({id, token, path: REQUIREMENTS});
 };

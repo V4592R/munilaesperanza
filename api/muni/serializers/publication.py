@@ -3,9 +3,12 @@ from rest_framework import serializers
 
 # Models
 from muni.models import Publication
+from muni.serializers import CategoryModelSerializer
 
 
 class PublicationModelSerializer(serializers.ModelSerializer):
+    categories = CategoryModelSerializer(many=True, read_only=True)
+
     class Meta:
         model = Publication
         fields = '__all__'
@@ -13,6 +16,8 @@ class PublicationModelSerializer(serializers.ModelSerializer):
 
 
 class PublicationCreateModelSerializer(serializers.ModelSerializer):
+    categories = CategoryModelSerializer(many=True, read_only=True)
+
     class Meta:
         model = Publication
         fields = [
