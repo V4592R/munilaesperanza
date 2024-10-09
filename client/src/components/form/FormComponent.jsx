@@ -7,7 +7,16 @@ import {handleError} from 'src/utils/handleError';
 import PropTypes from "prop-types";
 
 
-export const FormComponent = ({getData, updateItem, createItem, parentPath, pageName, render}) => {
+export const FormComponent = ({
+                                  getData,
+                                  updateItem,
+                                  createItem,
+                                  parentPath,
+                                  pageName,
+                                  render,
+                                  transformData,
+                                  transformSubmitData,
+                              }) => {
     const navigate = useNavigate();
     const user = useUser();
     const {id} = useParams();
@@ -20,7 +29,11 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
                 try {
                     setLoading(true);
                     const data = await getData({id, token: user.token});
-                    setInitialValues(data);
+                    if (transformData) {
+                        setInitialValues(transformData(data));
+                    } else {
+                        setInitialValues(data);
+                    }
                 } catch (error) {
                     await Swal.fire({
                         icon: 'error',
@@ -36,7 +49,8 @@ export const FormComponent = ({getData, updateItem, createItem, parentPath, page
         fetchData();
     }, [id, user, getData]);
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (dataForm) => {
+        const data = transformSubmitData ? transformSubmitData(dataForm) : dataForm;
         setLoading(true);
         if (id) {
             try {
@@ -84,5 +98,6 @@ FormComponent.propTypes = {
     parentPath: PropTypes.string.isRequired,
     pageName: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired,
-
+    transformData: PropTypes.func,
+    transformSubmitData: PropTypes.func,
 }

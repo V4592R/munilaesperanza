@@ -222,11 +222,11 @@ export const InputAsyncCreatable = (
           input.onChange(e);
           if (extraChange) extraChange(e);
         }}
-        searchPromptText={searchText}
+        placeholder={searchText}
         valueKey={valueKey}
         labelKey={labelKey}
         loadOptions={loadOptions}
-        promptTextCreator={(label) => {
+        formatCreateLabel={(label) => {
           return `${createText} ${label}`;
         }}
         allowCreateWhileLoading={allowCreateWhileLoading}

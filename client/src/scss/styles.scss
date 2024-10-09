@@ -5,3 +5,12 @@ $secondary: #fff203;
 .post-content img {
   max-width: 100%;
 }
+
+.card-service:hover {
+  background-color: $primary !important;
+  color: white;
+  box-shadow: 0 0 30px 0 $secondary !important;
+  a {
+    color: white;
+  }
+}

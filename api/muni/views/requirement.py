@@ -1,4 +1,5 @@
 # Django Rest framework
+from django.utils.timezone import override
 from rest_framework import viewsets
 
 # Permissions
@@ -12,10 +13,15 @@ from muni.models import Requirement
 # Serializers
 from muni.serializers import RequirementModelSerializer
 
+# Filters
+from rest_framework import filters
+
 
 class RequirementViewSet(viewsets.ModelViewSet):
     queryset = Requirement.objects.filter(active=True)
     serializer_class = RequirementModelSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['description',]
 
     def get_permissions(self):
         permissions = []

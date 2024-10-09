@@ -6,14 +6,17 @@ import {Button} from "reactstrap";
 import {InputField, InputTextAreaField} from "src/components/AppInput.jsx";
 import arrayMutators from 'final-form-arrays'
 import { FieldArray } from 'react-final-form-arrays'
+import {RequirementItemField} from "src/services/Requirements.jsx";
 
-const validateForm = (values) => validate(values, {
-    title: validators.exists()("Campo requerido"),
-    description: combine(
-        validators.exists()("Campo requerido"),
-        validators.length({max: 300})('Máximo 300 caracteres'),
-    )
-});
+const validateForm = (values) => {
+    return validate(values, {
+        title: validators.exists()("Campo requerido"),
+        description: combine(
+            validators.exists()("Campo requerido"),
+            validators.length({max: 300})('Máximo 300 caracteres'),
+        ),
+    })
+};
 
 export const ServiceForm = () => {
     return (
@@ -22,6 +25,22 @@ export const ServiceForm = () => {
             getData={getService}
             createItem={createService}
             updateItem={updateService}
+            transformData={(data) => {
+                return {
+                    ...data,
+                    requirements: data.requirements?.map(requirement => ({
+                        ...requirement,
+                        label: requirement.description,
+                        value: requirement.id
+                    })) ?? []
+                };
+            }}
+            transformSubmitData={(data) => {
+                return {
+                    ...data,
+                    requirements: data.requirements ?? []
+                };
+            }}
             pageName='servicios'
             render={({initialValues, onSubmit, id}) => (
                 <Form
@@ -31,7 +50,7 @@ export const ServiceForm = () => {
                     mutators={{
                         ...arrayMutators
                     }}
-                    render={({handleSubmit, submitting}) => (
+                    render={({handleSubmit, form, submitting}) => (
                         <div
                             className="d-flex flex-column justify-content-center align-items-center pb-4 col-12 col-md-8 mx-auto mt-2">
                             <form onSubmit={handleSubmit} className='w-100'>
@@ -57,6 +76,13 @@ export const ServiceForm = () => {
                                             label="Descripción"
                                             rows={8}
                                         />
+                                    </div>
+                                </div>
+                                <div className="row mb-3">
+                                    <div className="col-12">
+                                        <FieldArray name="requirements" form={form}>
+                                            {RequirementItemField}
+                                        </FieldArray>
                                     </div>
                                 </div>
                                 <div className="d-flex align-items-center justify-content-center">

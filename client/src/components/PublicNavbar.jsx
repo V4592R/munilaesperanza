@@ -29,11 +29,18 @@ function PublicNavbar(args) {
                 <NavbarToggler onClick={toggle}/>
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
-                        <NavItem className='text-center text-lg-start'>
+                        <NavItem className='text-center text-lg-start mx-2'>
                             <NavLink to="/publicaciones" className={({isActive}) =>
                                 `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
                             }>
                                 Publicaciones
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='text-center text-lg-start mx-2'>
+                            <NavLink to="/servicios" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
+                                Servicios
                             </NavLink>
                         </NavItem>
                     </Nav>

@@ -186,8 +186,8 @@ export const getRequirement = async ({id, token}) => {
     return await getGeneric({id, token, path: REQUIREMENTS});
 };
 
-export const getRequirements = async ({token, page = 1}) => {
-    return await getAllGeneric({token, path: REQUIREMENTS, page});
+export const getRequirements = async ({token, page = 1, params = {}}) => {
+    return await getAllGeneric({token, path: REQUIREMENTS, page, params});
 };
 
 export const createRequirement = async ({data, token}) => {
