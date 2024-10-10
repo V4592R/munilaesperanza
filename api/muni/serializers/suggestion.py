@@ -25,14 +25,10 @@ class SuggestionModelSerializer(serializers.ModelSerializer):
         try:
             captcha_response = requests.post(captcha_url, data=data)
             captcha_response_data = captcha_response.json()
-            print(data)
-            print(captcha_response_data.get('success', False))
 
             if not captcha_response_data.get('success', False):
-                print('hellooooo')
                 raise serializers.ValidationError('Captcha failed response')
 
             return super().create(validated_data)
-        except Exception as e:
-            print(e)
+        except:
             raise serializers.ValidationError('Captcha failed')
