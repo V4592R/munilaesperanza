@@ -16,6 +16,9 @@ export const FormComponent = ({
                                   render,
                                   transformData,
                                   transformSubmitData,
+                                  view = false,
+                                  showTitle = true,
+                                  successTitle = 'Creado con éxito'
                               }) => {
     const navigate = useNavigate();
     const user = useUser();
@@ -26,6 +29,7 @@ export const FormComponent = ({
     useEffect(() => {
         const fetchData = async () => {
             if (id) {
+                if (!getData) return;
                 try {
                     setLoading(true);
                     const data = await getData({id, token: user.token});
@@ -53,6 +57,7 @@ export const FormComponent = ({
         const data = transformSubmitData ? transformSubmitData(dataForm) : dataForm;
         setLoading(true);
         if (id) {
+            if (!updateItem) return;
             try {
                 await updateItem({id, token: user.token, data})
                 await Swal.fire({
@@ -67,11 +72,12 @@ export const FormComponent = ({
                 setInitialValues(data);
             }
         } else {
+            if (!createItem) return;
             try {
                 await createItem({token: user.token, data});
                 await Swal.fire({
                     icon: 'success',
-                    title: 'Creado con éxito',
+                    title: successTitle,
                     showConfirmButton: true,
                 })
                 navigate(parentPath);
@@ -85,19 +91,22 @@ export const FormComponent = ({
 
     return (
         <SmallContainer className="mt-5 d-flex flex-column align-items-center justify-content-center" loading={loading}>
-            <h3>{`${id ? "Editar" : "Crear"} ${pageName}`} </h3>
+            {showTitle ? (<h3>{`${id ? (view ? "Ver" : "Editar") : "Crear"} ${pageName}`} </h3>) : <></>}
             {render({initialValues, onSubmit, id})}
         </SmallContainer>
     );
 };
 
 FormComponent.propTypes = {
-    getData: PropTypes.func.isRequired,
-    updateItem: PropTypes.func.isRequired,
-    createItem: PropTypes.func.isRequired,
+    getData: PropTypes.func,
+    updateItem: PropTypes.func,
+    createItem: PropTypes.func,
     parentPath: PropTypes.string.isRequired,
     pageName: PropTypes.string.isRequired,
     render: PropTypes.func.isRequired,
     transformData: PropTypes.func,
     transformSubmitData: PropTypes.func,
+    view: PropTypes.bool,
+    successTitle: PropTypes.string,
+    showTitle: PropTypes.bool,
 }

@@ -23,7 +23,7 @@ const handleError = (error, title) => {
   }
 }
 
-export const ListComponent = ({ children, title = "", showActions = true, fields = [], urlEdit = "", urlCreate = "", getData = async () => { }, deleteItem = null, transformResults = (data) => data }) => {
+export const ListComponent = ({ children, title = "", showActions = true, fields = [], urlEdit = "", urlCreate = "", getData = async () => { }, deleteItem = null, transformResults = (data) => data, urlView = '' }) => {
   const navigate = useNavigate();
   const user = useUser();
 
@@ -49,7 +49,11 @@ export const ListComponent = ({ children, title = "", showActions = true, fields
   }
 
   const handleEdit = (id) => {
-    navigate(urlEdit.replace(":id", id))
+    navigate(urlEdit?.replace(":id", id))
+  };
+
+  const handleView = (id) => {
+    navigate(urlView?.replace(":id", id))
   };
 
   const handleDelete = (id) => {
@@ -88,10 +92,13 @@ export const ListComponent = ({ children, title = "", showActions = true, fields
       <div className="mt-5">
         <h3 className="mokoto-font">{title}</h3>
         {children}
-        <Link to={urlCreate} className="btn btn-primary my-3" >
-          <i className="bi bi-plus-circle-fill" />
-        </Link>
-        <PaginatedTable data={data} fields={fields} actions={showActions} onDelete={deleteItem ? handleDelete : null} onEdit={handleEdit} fetchData={fetchData} currentPage={page} />
+        {urlCreate ? (
+            <Link to={urlCreate} className="btn btn-primary my-3">
+              <i className="bi bi-plus-circle-fill"/>
+            </Link>
+        ) : <></>}
+        <PaginatedTable data={data} fields={fields} actions={showActions} onDelete={deleteItem ? handleDelete : null}
+                        onEdit={urlEdit ? handleEdit : null} fetchData={fetchData} currentPage={page} onView={urlView ? handleView : null}/>
       </div>
     </SmallContainer>
   );

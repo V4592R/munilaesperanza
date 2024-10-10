@@ -43,6 +43,13 @@ function PublicNavbar(args) {
                                 Servicios
                             </NavLink>
                         </NavItem>
+                        <NavItem className='text-center text-lg-start mx-2'>
+                            <NavLink to="/sugerencias" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
+                                Dar sugerencias
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                 </Collapse>
             </Navbar>

@@ -7,6 +7,7 @@ const USERS = 'users';
 const PUBLICATIONS = 'publications';
 const SERVICES = 'services';
 const REQUIREMENTS = 'requirements';
+const SUGGESTIONS = 'suggestions';
 const signUpUrl = `${USERS}/signup`;
 export const LOGIN = `${USERS}/login`;
 const RESET_PASSWORD = `reset_password`;
@@ -200,4 +201,24 @@ export const updateRequirement = async ({id, token, data}) => {
 
 export const deleteRequirement = async ({id, token}) => {
     return await deleteGeneric({id, token, path: REQUIREMENTS});
+};
+
+export const getSuggestion = async ({id, token}) => {
+    return await getGeneric({id, token, path: SUGGESTIONS});
+};
+
+export const getSuggestions = async ({token, page = 1, params = {}}) => {
+    return await getAllGeneric({token, path: SUGGESTIONS, page, params});
+};
+
+export const createSuggestion = async ({data, token}) => {
+    return await postGeneric({data, token, path: SUGGESTIONS});
+};
+
+export const updateSuggestion = async ({id, token, data}) => {
+    return await updateGeneric({id, token, data, path: SUGGESTIONS});
+};
+
+export const deleteSuggestion = async ({id, token}) => {
+    return await deleteGeneric({id, token, path: SUGGESTIONS});
 };

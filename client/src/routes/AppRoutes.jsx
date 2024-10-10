@@ -13,6 +13,8 @@ import PublicRoutes from "src/routes/PublicRoutes.jsx";
 import {ServicesList, ServiceForm} from "src/services/index.js";
 import {ServicesView} from "src/public_services/public_service_list.jsx";
 import IndividualServiceView from "src/public_services/service_detail.jsx";
+import {SuggestionsList, SuggestionView} from "src/suggestions/index.js";
+import {SuggestionsForm} from "src/public_suggestions/Form.jsx";
 
 const NoRoleUser = () => {
     return (
@@ -48,12 +50,17 @@ export const AppRoutes = () => {
                     <Route element={<ServiceForm/>} path="servicios/nuevo" exact/>
                     <Route element={<ServiceForm/>} path="servicios/:id" exact/>
                 </Route>
+                <Route element={<PrivateRoutes/>}>
+                    <Route element={<SuggestionsList/>} path="sugerencias" exact/>
+                    <Route element={<SuggestionView/>} path="sugerencias/:id" exact/>
+                </Route>
             </Route>
             <Route path='/' element={<PublicRoutes/>}>
                 <Route path='publicaciones' element={<PostsView/>} exact/>
                 <Route path='publicaciones/:id' element={<IndividualPostView/>} exact/>
                 <Route path='servicios' element={<ServicesView/>} exact/>
                 <Route path='servicios/:id' element={<IndividualServiceView/>} exact/>
+                <Route path='sugerencias' element={<SuggestionsForm/>} exact/>
             </Route>
         </Routes>
     )

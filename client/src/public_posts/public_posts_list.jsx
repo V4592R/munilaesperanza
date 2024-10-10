@@ -16,7 +16,6 @@ export function PostsView() {
             onLoading();
             const response = await getPublicPosts({page: state.page});
             let posts = state.posts.concat(response.results);
-            console.log(response);
             if (state.page === 1) {
                 onSetLatest(posts.length > 2 ? posts.slice(0, 2) : posts);
                 posts = posts.length > 2 ? posts.slice(2) : [];

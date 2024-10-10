@@ -2,3 +2,4 @@ from .category import CategoryModelSerializer
 from .publication import PublicationModelSerializer, PublicationCreateModelSerializer
 from .service import ServiceModelSerializer, ServiceCreateModelSerializer
 from .requirement import RequirementModelSerializer
+from .suggestion import SuggestionModelSerializer

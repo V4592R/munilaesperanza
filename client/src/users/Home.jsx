@@ -15,14 +15,20 @@ export const Home = () => {
         },
         {
             label: "Publicaciones",
-            iconClass: "bi-postcard",
+            iconClass: "bi-postcard-fill",
             to: "publicaciones",
             forStaff: false,
         },
         {
             label: "Servicios",
-            iconClass: "bi-gear",
+            iconClass: "bi-gear-fill",
             to: "servicios",
+            forStaff: false,
+        },
+        {
+            label: "Quejas y sugerencias",
+            iconClass: "bi-chat-right-text-fill",
+            to: "sugerencias",
             forStaff: false,
         },
     ]

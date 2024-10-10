@@ -1,7 +1,7 @@
 import { Table, Pagination, PaginationItem, PaginationLink, Button } from 'reactstrap';
 import PropTypes from "prop-types";
 
-const PaginatedTable = ({ data, currentPage, pageSize = 10, fetchData = () => { }, fields, actions = false, onEdit = null, onDelete = null }) => {
+const PaginatedTable = ({ data, currentPage, pageSize = 10, fetchData = () => { }, fields, actions = false, onEdit = null, onDelete = null, onView = null }) => {
   const results = data.results ?? [];
   const count = data.count ?? 0;
   const totalPages = Math.ceil(count / pageSize);
@@ -25,6 +25,12 @@ const PaginatedTable = ({ data, currentPage, pageSize = 10, fetchData = () => { 
               {actions ? (
                 <td style={{ width: "20%" }}>
                   <div className="d-flex align-items-centers justify-content-center">
+                    {onView ? (
+                            <Button size="sm" color="primary" className="me-2" onClick={() => onView(item.id)}>
+                              <i className="bi bi-eye-fill" />
+                            </Button>)
+                        : null
+                    }
                     {onEdit ? (
                       <Button size="sm" color="primary" className="me-2" onClick={() => onEdit(item.id)}>
                         <i className="bi bi-pencil-square" />
