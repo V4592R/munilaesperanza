@@ -3,7 +3,7 @@ import {validate, validators, combine} from "validate-redux-form";
 import {createSuggestion} from "src/config/api.js";
 import {Field, Form} from "react-final-form";
 import {Button} from "reactstrap";
-import {InputField, InputTextAreaField} from "src/components/AppInput.jsx";
+import {InputField, InputNumberField, InputTextAreaField} from "src/components/AppInput.jsx";
 import ReCAPTCHA from 'react-google-recaptcha';
 import {useState} from "react";
 
@@ -42,7 +42,8 @@ export const SuggestionsForm = () => {
             createItem={createSuggestion}
             pageName='sugerencias'
             successTitle='Gracias por tus comentarios'
-            showTitle={false}
+            showDefaultTitle={false}
+            title='Formulario de sugerencias'
             render={({initialValues, onSubmit, id}) => (
                 <Form
                     onSubmit={async (formData) => {
@@ -98,7 +99,8 @@ export const SuggestionsForm = () => {
                                     <div className="col-12">
                                         <Field
                                             name="phone_number"
-                                            render={InputField}
+                                            render={InputNumberField}
+                                            allowNegative={false}
                                             type="text"
                                             placeholder="Ej. 34534475"
                                             label="Número de teléfono"

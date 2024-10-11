@@ -17,8 +17,10 @@ export const FormComponent = ({
                                   transformData,
                                   transformSubmitData,
                                   view = false,
-                                  showTitle = true,
-                                  successTitle = 'Creado con éxito'
+                                  showDefaultTitle = true,
+                                  title = '',
+                                  successTitle = 'Creado con éxito',
+                                  navigateCreationSuccess = true,
                               }) => {
     const navigate = useNavigate();
     const user = useUser();
@@ -80,7 +82,12 @@ export const FormComponent = ({
                     title: successTitle,
                     showConfirmButton: true,
                 })
-                navigate(parentPath);
+                if(navigateCreationSuccess) {
+                    console.log('entrado')
+                    navigate(parentPath);
+                } else {
+                    setInitialValues(data);
+                }
             } catch (error) {
                 handleError(error, 'Oops...');
                 setInitialValues(data);
@@ -91,7 +98,8 @@ export const FormComponent = ({
 
     return (
         <SmallContainer className="mt-5 d-flex flex-column align-items-center justify-content-center" loading={loading}>
-            {showTitle ? (<h3>{`${id ? (view ? "Ver" : "Editar") : "Crear"} ${pageName}`} </h3>) : <></>}
+            {showDefaultTitle ? (<h3>{`${id ? (view ? "Ver" : "Editar") : "Crear"} ${pageName}`} </h3>) :
+                <h3>{title}</h3>}
             {render({initialValues, onSubmit, id})}
         </SmallContainer>
     );
@@ -108,5 +116,7 @@ FormComponent.propTypes = {
     transformSubmitData: PropTypes.func,
     view: PropTypes.bool,
     successTitle: PropTypes.string,
-    showTitle: PropTypes.bool,
+    showDefaultTitle: PropTypes.bool,
+    title: PropTypes.string,
+    navigateCreationSuccess: PropTypes.bool,
 }

@@ -15,6 +15,8 @@ import {ServicesView} from "src/public_services/public_service_list.jsx";
 import IndividualServiceView from "src/public_services/service_detail.jsx";
 import {SuggestionsList, SuggestionView} from "src/suggestions/index.js";
 import {SuggestionsForm} from "src/public_suggestions/Form.jsx";
+import {HomePage} from "src/home/index.jsx";
+import {WaterForm} from "src/public_water/Form.jsx";
 
 const NoRoleUser = () => {
     return (
@@ -56,6 +58,8 @@ export const AppRoutes = () => {
                 </Route>
             </Route>
             <Route path='/' element={<PublicRoutes/>}>
+                <Route path='' element={<HomePage/>} exact/>
+                <Route path='formulario-agua' element={<WaterForm/>} exact/>
                 <Route path='publicaciones' element={<PostsView/>} exact/>
                 <Route path='publicaciones/:id' element={<IndividualPostView/>} exact/>
                 <Route path='servicios' element={<ServicesView/>} exact/>

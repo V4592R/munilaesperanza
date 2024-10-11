@@ -23,12 +23,19 @@ function PublicNavbar(args) {
                 <NavLink to="/" className='me-3 navbar-brand'>
                     <div>
                         <img width="40px" src={logo} alt='logo' className="mx-2 rounded-3 text-primary"/>
-                        <span className='text-white'>Municipalidad de la Esperanza</span>
+                        <span className='text-white d-none d-md-inline'>Municipalidad de la Esperanza</span>
                     </div>
                 </NavLink>
-                <NavbarToggler onClick={toggle}/>
+                <NavbarToggler onClick={toggle} className='border-0 shadow-none bg-primary'/>
                 <Collapse isOpen={isOpen} navbar>
                     <Nav navbar>
+                        <NavItem className='text-center text-lg-start mx-2'>
+                            <NavLink to="/" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
+                                Home
+                            </NavLink>
+                        </NavItem>
                         <NavItem className='text-center text-lg-start mx-2'>
                             <NavLink to="/publicaciones" className={({isActive}) =>
                                 `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
@@ -48,6 +55,13 @@ function PublicNavbar(args) {
                                 `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
                             }>
                                 Dar sugerencias
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='text-center text-lg-start mx-2'>
+                            <NavLink to="/formulario-agua" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
+                                Solicitud de agua
                             </NavLink>
                         </NavItem>
                     </Nav>

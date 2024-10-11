@@ -3,6 +3,7 @@ import {SmallContainer} from "src/components/Container.jsx";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {getServices} from "src/config/api.js";
 import ServiceCard from "src/public_services/service_card.jsx";
+import {Link} from "react-router-dom";
 
 export function ServicesView() {
     const [state, dispatch] = useReducer(reducer, initialState);
@@ -48,6 +49,21 @@ export function ServicesView() {
                 }
             >
                 <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-5">
+                    <div className="col">
+                        <div className="card h-100 shadow-lg shadow- bg-body-secondary card-service ">
+                            <div className="card-body">
+                                <div className="d-flex align-items-center justify-content-center">
+                                    <i className="bi bi-question-circle-fill"></i>
+                                </div>
+
+                                <h2 className="card-title h4">Solicitud de agua</h2>
+                                <p className="card-text">Formulario para solicitar agua</p>
+                                <Link to='/formulario-agua' className="btn btn-link m-0 p-0">
+                                    Ver detalles
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                     {state.services.map((service, index) => (
                         <div key={service.id} className="col">
                             <ServiceCard service={service} key={service.id ?? index}/>
@@ -61,7 +77,8 @@ export function ServicesView() {
 
 const initialState = {
     hasMore: true,
-    loading: false,
+    loading:
+        false,
     page: 1,
     services: [],
 };
