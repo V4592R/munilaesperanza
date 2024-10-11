@@ -1,6 +1,5 @@
 # Django REST Framework
 import requests
-from MySQLdb.constants.FLAG import PRI_KEY
 from rest_framework import serializers
 from django.conf import settings
 
