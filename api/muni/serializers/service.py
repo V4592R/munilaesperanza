@@ -45,7 +45,10 @@ class ServiceCreateModelSerializer(serializers.ModelSerializer):
         requirements_instances = []
 
         for requirement in requirements:
-            requirements_instances.append(Requirement.objects.get(pk=requirement['id']))
+            try:
+                requirements_instances.append(Requirement.objects.get(pk=requirement['id']))
+            except Exception as e:
+                logging.error(e)
 
         user = self.context['request'].user
         validated_data['creator'] = user
