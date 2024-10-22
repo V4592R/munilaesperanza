@@ -44,6 +44,13 @@ function PublicNavbar(args) {
                             </NavLink>
                         </NavItem>
                         <NavItem className='text-center text-lg-start mx-2'>
+                            <NavLink to="/alcaldes" className={({isActive}) =>
+                                `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
+                            }>
+                                Alcaldes
+                            </NavLink>
+                        </NavItem>
+                        <NavItem className='text-center text-lg-start mx-2'>
                             <NavLink to="/servicios" className={({isActive}) =>
                                 `text-secondary ${isActive ? "text-decoration-underline" : "text-decoration-none"}`
                             }>

@@ -17,6 +17,7 @@ import {SuggestionsList, SuggestionView} from "src/suggestions/index.js";
 import {SuggestionsForm} from "src/public_suggestions/Form.jsx";
 import {HomePage} from "src/home/index.jsx";
 import {WaterForm} from "src/public_water/Form.jsx";
+import {AlcaldesList} from "src/home/AlcaldesList.jsx";
 
 const NoRoleUser = () => {
     return (
@@ -65,6 +66,7 @@ export const AppRoutes = () => {
                 <Route path='servicios' element={<ServicesView/>} exact/>
                 <Route path='servicios/:id' element={<IndividualServiceView/>} exact/>
                 <Route path='sugerencias' element={<SuggestionsForm/>} exact/>
+                <Route path='alcaldes' element={<AlcaldesList />} exact />
             </Route>
         </Routes>
     )

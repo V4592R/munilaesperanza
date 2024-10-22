@@ -1,3 +1,6 @@
+import {PhoneDirectory} from "src/home/PhoneDirectory.jsx";
+import {OfficeDirectory} from "src/home/OfficeDirectory.jsx";
+
 export function HomePage() {
     return (
         <div className="container py-5">
@@ -70,6 +73,10 @@ export function HomePage() {
                     ))}
                 </div>
             </section>
+            <PhoneDirectory/>
+
+            <OfficeDirectory/>
+
         </div>
     )
 }
