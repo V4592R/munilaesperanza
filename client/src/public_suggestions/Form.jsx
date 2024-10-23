@@ -7,6 +7,7 @@ import {InputField, InputNumberField, InputTextAreaField} from "src/components/A
 import ReCAPTCHA from 'react-google-recaptcha';
 import {useState} from "react";
 
+const siteKey = import.meta.env.VITE_RECAPTCHA_SITEKEY || 'site_key'
 const validateForm = (values) => {
     return validate(values, {
         first_name: combine(
@@ -121,7 +122,7 @@ export const SuggestionsForm = () => {
                                     </div>
                                 </div>
                                 <ReCAPTCHA
-                                    sitekey="6LdTS10qAAAAADl7pQ2tds-rd-I4mdSX1LoDKpVu"
+                                    sitekey={siteKey}
                                     onChange={handleCaptcha}
                                 />
                                 <div className="d-flex align-items-center justify-content-center">
