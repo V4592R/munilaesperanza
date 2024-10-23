@@ -2,7 +2,8 @@ import Axios from 'axios';
 import {store} from "src/store/index.js";
 import {logOut} from "src/store/user.js";
 
-const DOMAIN = 'http://localhost:8000/api/v1';
+const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000'
+const DOMAIN = `${baseUrl}/api/v1`;
 const USERS = 'users';
 const PUBLICATIONS = 'publications';
 const SERVICES = 'services';
