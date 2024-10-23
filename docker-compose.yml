@@ -8,6 +8,8 @@ services:
       - MYSQL_USER={MYSQL_USER:-mysql}
       - MYSQL_PASSWORD={MYSQL_PASSWORD:-mysql}
       - MYSQL_ROOT_PASSWORD={MYSQL_ROOT_PASSWORD:-mysql}
+    ports:
+      - "3306:3306"
     restart: always
   web:
     build: api
