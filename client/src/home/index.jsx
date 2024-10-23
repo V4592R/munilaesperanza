@@ -1,5 +1,6 @@
 import {PhoneDirectory} from "src/home/PhoneDirectory.jsx";
 import {OfficeDirectory} from "src/home/OfficeDirectory.jsx";
+import logo from '/logo.jpg';
 
 export function HomePage() {
     return (
@@ -13,7 +14,7 @@ export function HomePage() {
 
             <section className="mb-5 d-flex align-items-center justify-content-center">
                 <img
-                    src="/src/assets/logo.jpg"
+                    src={logo}
                     alt="Logo de la municipalidad"
                     width={300}
                     height={300}
