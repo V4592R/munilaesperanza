@@ -33,7 +33,7 @@ class PublicationViewSet(viewsets.ModelViewSet):
         return [p() for p in permissions]
 
     def perform_destroy(self, instance):
-        instance.is_active = False
+        instance.active = False
         instance.save()
 
     def get_queryset(self):

@@ -6,3 +6,6 @@ from utils.models import BaseModel
 
 class Requirement(BaseModel):
     description = models.CharField(max_length=300)
+
+    class Meta:
+        ordering = ['created']

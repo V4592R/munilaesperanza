@@ -16,6 +16,7 @@ class SuggestionModelSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         captcha_token = self.initial_data.get('captchaToken', '')
         captcha_key = settings.CAPTCHA_SECRET_KEY_V2
+        print('captcha key ==>', captcha_key)
         captcha_url = 'https://www.google.com/recaptcha/api/siteverify'
         data = {
             'secret': captcha_key,

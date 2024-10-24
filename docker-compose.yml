@@ -4,10 +4,10 @@ services:
     volumes:
       - ./api/data/db:/var/lib/mysql/
     environment:
-      - MYSQL_DATABASE={MYSQL_DATABASE:-mysql}
-      - MYSQL_USER={MYSQL_USER:-mysql}
-      - MYSQL_PASSWORD={MYSQL_PASSWORD:-mysql}
-      - MYSQL_ROOT_PASSWORD={MYSQL_ROOT_PASSWORD:-mysql}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-mysql}
+      - MYSQL_USER=${MYSQL_USER:-mysql}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-mysql}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-mysql}
     ports:
       - "3306:3306"
     restart: always
@@ -20,11 +20,11 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - MYSQL_DATABASE={MYSQL_DATABASE:-mysql}
-      - MYSQL_USER={MYSQL_USER:-mysql}
-      - MYSQL_PASSWORD={MYSQL_PASSWORD:-mysql}
-      - MYSQL_ROOT_PASSWORD={MYSQL_ROOT_PASSWORD:-mysql}
-      - CAPTCHA_SECRET_KEY_V2={CAPTCHA_SECRET_KEY_V2:-secret_key}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-mysql}
+      - MYSQL_USER=${MYSQL_USER:-mysql}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:-mysql}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-mysql}
+      - CAPTCHA_SECRET_KEY_V2=${CAPTCHA_SECRET_KEY_V2:-secret_key}
     depends_on:
       - db
 
@@ -37,6 +37,8 @@ services:
     volumes:
       - ./client:/app
     environment:
-      - NODE_ENV={NODE_ENV:-development}
+      - NODE_ENV=${NODE_ENV:-development}
+      - VITE_API_URL=${VITE_API_URL:-secret_key}
+      - VITE_RECAPTCHA_SITEKEY=${VITE_RECAPTCHA_SITEKEY:-secret_key}
     depends_on:
       - web
